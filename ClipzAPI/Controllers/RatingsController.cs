@@ -32,6 +32,7 @@ namespace ClipzAPI.Controllers
         {
             var ratings = _context.Ratings.Where(r => r.UserId == Id);
 
+
             return Ok(ratings);
         }
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ClipzAPI.Migrations
 {
-    public partial class an : Migration
+    public partial class gfjsdhf : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,6 +34,7 @@ namespace ClipzAPI.Migrations
                     Overall_rating = table.Column<double>(type: "float", nullable: false),
                     Is_working = table.Column<bool>(type: "bit", nullable: false),
                     Service_distance = table.Column<int>(type: "int", nullable: false),
+                    Is_busy = table.Column<bool>(type: "bit", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -73,6 +74,31 @@ namespace ClipzAPI.Migrations
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Appointments",
+                columns: table => new
+                {
+                    AppointmentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ServicerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CustomerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CustomerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ServicerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Cost = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AspNetUsersId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Appointments", x => x.AppointmentId);
+                    table.ForeignKey(
+                        name: "FK_Appointments_AspNetUsers_AspNetUsersId",
+                        column: x => x.AspNetUsersId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -206,12 +232,17 @@ namespace ClipzAPI.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "f5b5c008-6081-4b71-8f04-27f15cd68792", "910ef459-26cb-4cfe-a1d9-61f92c1b0d74", "User", "USER" });
+                values: new object[] { "672d91c2-edf4-4726-b315-094a8cdbd185", "af47fec6-40d5-4073-a9fe-6fee69b90b03", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "0e9ffb13-44d4-461e-a7a2-76e63c971135", "497c10a1-6ac6-4d32-a67b-ceab41cf9cf1", "Admin", "ADMIN" });
+                values: new object[] { "963b4552-43e2-40f2-8199-f98bad3a4795", "ffa6d8ee-53c0-4517-84a5-9ac8e77b3b3d", "Admin", "ADMIN" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_AspNetUsersId",
+                table: "Appointments",
+                column: "AspNetUsersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -265,6 +296,9 @@ namespace ClipzAPI.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Appointments");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 

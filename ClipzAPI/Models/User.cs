@@ -13,8 +13,10 @@ namespace ClipzAPI.Models
         public double Overall_rating { get; set; }
         public bool Is_working { get; set; }
         public int Service_distance { get; set; }
+        public bool Is_busy { get; set; }
 
         public virtual ICollection<Ratings> Ratings { get; set; }
         public virtual ICollection<Services> Services { get; set; }
+        public virtual ICollection<Appointments> Appointments { get; set; }
     }
 }

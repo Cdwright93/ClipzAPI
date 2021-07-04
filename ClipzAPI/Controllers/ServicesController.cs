@@ -30,9 +30,10 @@ namespace ClipzAPI.Controllers
         [HttpGet("{Id}")]
         public IActionResult GetAllServices(string Id)
         {
-            var ratings = _context.Services.Where(s => s.UserId == Id);
+            var services= _context.Services.Where(s => s.UserId == Id);
 
-            return Ok(ratings);
+
+            return Ok(services);
         }
 
     }

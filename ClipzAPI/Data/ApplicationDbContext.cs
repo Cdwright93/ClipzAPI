@@ -16,11 +16,13 @@ namespace ClipzAPI.Data
         }
         public DbSet<Ratings> Ratings { get; set; }
         public DbSet<Services> Services { get; set; }
+        public DbSet<Appointments> Appointments { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<AspNetUsers>().HasMany(r => r.Ratings );
             modelBuilder.Entity<AspNetUsers>().HasMany(s => s.Services );
+            modelBuilder.Entity<AspNetUsers>().HasMany(a => a.Appointments);
             modelBuilder.ApplyConfiguration(new RolesConfiguration());
         }
 

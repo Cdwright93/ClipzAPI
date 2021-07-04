@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClipzAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210630174018_an")]
-    partial class an
+    [Migration("20210703200048_gfjsdhf")]
+    partial class gfjsdhf
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,41 @@ namespace ClipzAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("ClipzAPI.Models.Appointments", b =>
+                {
+                    b.Property<int>("AppointmentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AspNetUsersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Cost")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ServicerId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ServicerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AppointmentId");
+
+                    b.HasIndex("AspNetUsersId");
+
+                    b.ToTable("Appointments");
+                });
 
             modelBuilder.Entity("ClipzAPI.Models.AspNetUsers", b =>
                 {
@@ -42,6 +77,9 @@ namespace ClipzAPI.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Is_busy")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("Is_servicer")
                         .HasColumnType("bit");
@@ -188,15 +226,15 @@ namespace ClipzAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f5b5c008-6081-4b71-8f04-27f15cd68792",
-                            ConcurrencyStamp = "910ef459-26cb-4cfe-a1d9-61f92c1b0d74",
+                            Id = "672d91c2-edf4-4726-b315-094a8cdbd185",
+                            ConcurrencyStamp = "af47fec6-40d5-4073-a9fe-6fee69b90b03",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "0e9ffb13-44d4-461e-a7a2-76e63c971135",
-                            ConcurrencyStamp = "497c10a1-6ac6-4d32-a67b-ceab41cf9cf1",
+                            Id = "963b4552-43e2-40f2-8199-f98bad3a4795",
+                            ConcurrencyStamp = "ffa6d8ee-53c0-4517-84a5-9ac8e77b3b3d",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -306,6 +344,13 @@ namespace ClipzAPI.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("ClipzAPI.Models.Appointments", b =>
+                {
+                    b.HasOne("ClipzAPI.Models.AspNetUsers", null)
+                        .WithMany("Appointments")
+                        .HasForeignKey("AspNetUsersId");
+                });
+
             modelBuilder.Entity("ClipzAPI.Models.Ratings", b =>
                 {
                     b.HasOne("ClipzAPI.Models.AspNetUsers", "AspNetUsers")
@@ -377,6 +422,8 @@ namespace ClipzAPI.Migrations
 
             modelBuilder.Entity("ClipzAPI.Models.AspNetUsers", b =>
                 {
+                    b.Navigation("Appointments");
+
                     b.Navigation("Ratings");
 
                     b.Navigation("Services");

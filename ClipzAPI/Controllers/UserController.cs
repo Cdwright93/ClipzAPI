@@ -27,6 +27,22 @@ namespace ClipzAPI.Controllers
         {
             var userId = User.FindFirstValue("id");
             var user = _context.Users.Find(userId);
+            var x = 0;
+            var f = 0;
+            var overallRating = _context.Ratings.Where(u => u.UserId == userId);
+            foreach (var rating in overallRating)
+            {
+                x++;
+                f += rating.Rating;
+            }
+            var update = new double();
+            if (x != 0)
+            {
+               update = f / x;
+               user.Overall_rating = update;
+               _context.Update(user);
+               _context.SaveChanges();
+            }
             if (user == null)
             {
                 return NotFound();
@@ -45,6 +61,16 @@ namespace ClipzAPI.Controllers
             userUpdates.ApplyTo(user);
             _context.SaveChanges();
             return Ok(user);
+        }
+        [HttpGet("all")]
+        public IActionResult GetAllservicers()
+        {
+            var users = _context.Users.Where(r => r.Is_servicer == true);
+            if (users == null)
+            {
+                return NotFound();
+            }
+            return Ok(users);
         }
     }
 }
