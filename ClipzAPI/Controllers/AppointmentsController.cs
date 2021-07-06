@@ -37,6 +37,11 @@ namespace ClipzAPI.Controllers
             {
                 return NotFound();
             }
+            if (appointment.Status == "Remove")
+            {
+                _context.Remove(appointment);
+                _context.SaveChanges();
+            }
             appointmentUpdates.ApplyTo(appointment);
             _context.SaveChanges();
             return Ok(appointment);

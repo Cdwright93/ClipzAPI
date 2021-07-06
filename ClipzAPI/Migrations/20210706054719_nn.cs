@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ClipzAPI.Migrations
 {
-    public partial class gfjsdhf : Migration
+    public partial class nn : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -232,12 +232,12 @@ namespace ClipzAPI.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "672d91c2-edf4-4726-b315-094a8cdbd185", "af47fec6-40d5-4073-a9fe-6fee69b90b03", "User", "USER" });
+                values: new object[] { "85301436-eb35-48da-a11c-8c14ee65467d", "16389a4b-93f4-4fdd-8633-4a2adada597e", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "963b4552-43e2-40f2-8199-f98bad3a4795", "ffa6d8ee-53c0-4517-84a5-9ac8e77b3b3d", "Admin", "ADMIN" });
+                values: new object[] { "9c7f4fe2-eb63-45d7-931c-61c29185063c", "0180cc80-a6a1-4098-9dac-75d83d019fe4", "Admin", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_AspNetUsersId",

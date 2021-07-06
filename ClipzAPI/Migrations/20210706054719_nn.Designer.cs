@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClipzAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210703200048_gfjsdhf")]
-    partial class gfjsdhf
+    [Migration("20210706054719_nn")]
+    partial class nn
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -226,15 +226,15 @@ namespace ClipzAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "672d91c2-edf4-4726-b315-094a8cdbd185",
-                            ConcurrencyStamp = "af47fec6-40d5-4073-a9fe-6fee69b90b03",
+                            Id = "85301436-eb35-48da-a11c-8c14ee65467d",
+                            ConcurrencyStamp = "16389a4b-93f4-4fdd-8633-4a2adada597e",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "963b4552-43e2-40f2-8199-f98bad3a4795",
-                            ConcurrencyStamp = "ffa6d8ee-53c0-4517-84a5-9ac8e77b3b3d",
+                            Id = "9c7f4fe2-eb63-45d7-931c-61c29185063c",
+                            ConcurrencyStamp = "0180cc80-a6a1-4098-9dac-75d83d019fe4",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
